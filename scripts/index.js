@@ -219,8 +219,8 @@ context.strokeStyle = gradient;
     hint.onclick = function() {
 
       hints = [
-        ["It's perfect for data science", "It's used to create beautiful page", "The world's most popular programming language", "If you are a mathematician...", "It's a backend programing language", "It's similar to JavaScript", "Formula Translation"],
-        ["Science-Fiction horror film", "1971 American action film", "Historical drama", "Anamated Fish", "Giant great white shark"],
+        ["It's perfect for data science", "It's like the skin of a webpage", "The world's most popular programming language", "If you are a mathematician...", "It's a backend programing language", "It's similar to JavaScript", "Formula Translation"],
+        ["Science-Fiction horror film", "1971 American action film", "Historical drama", "Animated Fish", "Giant great white shark"],
         ["Northern city in the UK", "Home of AC and Inter", "Spanish capital", "Netherlands capital", "Czech Republic capital"]
     ];
 
