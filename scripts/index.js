@@ -77,13 +77,15 @@ window.onload = function () {
     showLives.innerHTML = "You have " + lives + " lives";
     showLives.style.color = "#faff00";
         
-    if (lives < 1) {
+    
+    for (var i = 0; i < guesses.length; i++) {
+      
+      if (lives < 1) {
       showLives.innerHTML = "Game Over";
       showLives.style.color = "#ff0000";
         
     }
-    for (var i = 0; i < guesses.length; i++) {
-      if (counter + space === guesses.length) {
+      if (counter + space === guesses.length && lives > 0) {
         showLives.innerHTML = "You Win!";
         showLives.style.color = "#00FF37";
        
@@ -199,7 +201,7 @@ context.strokeStyle = gradient;
     chosenCategory = categories[Math.floor(Math.random() * categories.length)];
     word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
     word = word.replace(/\s/g, "-");
-    console.log(word);
+    //console.log(word);
     buttons();
 
     guesses = [ ];
