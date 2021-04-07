@@ -9,9 +9,9 @@ window.onload = function () {
   var getHint ;          // Word getHint
   var word ;              // Selected word
   var guess ;             // Geuss
-  var geusses = [ ];      // Stored geusses
+  var guesses = [ ];      // Stored guesses
   var lives ;             // Lives
-  var counter ;           // Count correct geusses
+  var counter ;           // Count correct guesses
   var space;              // Number of spaces in word '-'
 
   // Get elements
@@ -50,7 +50,7 @@ window.onload = function () {
     }
   }
 
-  // Create geusses ul
+  // Create guesses ul
    result = function () {
     wordHolder = document.getElementById('hold');
     correct = document.createElement('ul');
@@ -66,7 +66,7 @@ window.onload = function () {
         guess.innerHTML = "_";
       }
 
-      geusses.push(guess);
+      guesses.push(guess);
       wordHolder.appendChild(correct);
       correct.appendChild(guess);
     }
@@ -82,8 +82,8 @@ window.onload = function () {
       showLives.style.color = "#ff0000";
         
     }
-    for (var i = 0; i < geusses.length; i++) {
-      if (counter + space === geusses.length) {
+    for (var i = 0; i < guesses.length; i++) {
+      if (counter + space === guesses.length) {
         showLives.innerHTML = "You Win!";
         showLives.style.color = "#00FF37";
        
@@ -172,7 +172,7 @@ context.strokeStyle = gradient;
       this.onclick = null;
       for (var i = 0; i < word.length; i++) {
         if (word[i] === geuss) {
-          geusses[i].innerHTML = geuss;
+          guesses[i].innerHTML = geuss;
           counter += 1;
         } 
       }
@@ -202,7 +202,7 @@ context.strokeStyle = gradient;
     console.log(word);
     buttons();
 
-    geusses = [ ];
+    guesses = [ ];
     lives = 7;
     counter = 0;
     space = 0;
