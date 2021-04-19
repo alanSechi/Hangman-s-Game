@@ -1,13 +1,18 @@
 /* Variabes */
 /* Mixin's */
 body {
-  background: #292b2c;
+  background: url("https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-camouflage-gradient-background-color-mixing-apple-wind-image_34341.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 100%;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  color: #21ff00;
+  color: #000;
   height: 100%;
   text-align: center;
   font-size: 12px;
+  align-items: center;
 }
+
 
 .wrappper {
   width: 100%;
@@ -19,14 +24,27 @@ body {
   clear: both;
 }
 
+.glass{
+  background:  linear-gradient(107.18deg, rgba(255, 255, 255, 0.7) 1.84%, rgba(255, 255, 255, 0.4) 100%);
+  border-radius: 1rem;
+  width: 70%;
+  margin: 0 auto;
+  
+
+  
+
+  
+}
+
 canvas {
-  /* color: #fff;
+  color: #000;
   border: dashed 2px;
-  border-color: linear-gradient(to right, red, purple); */
-  border: 3px solid;
+  border-color: linear-gradient(to right, red, purple);
+  padding: 15px;
+  /* border: 3px solid;
   border-image-slice: 1;
   border-image-source: linear-gradient(to right, #21ff00, #ff0000);
-  padding: 15px;
+   */
 }
 
 #stickman {
@@ -55,7 +73,6 @@ p {
 
 #alphabet {
   margin: 15px auto;
-  padding: 0;
   max-width: 900px;
 }
 #alphabet:after {
@@ -71,21 +88,22 @@ p {
   width: 55px;
   height: 35px;
   padding-top: 15px;
-  background: #21ff00;
-  color: #292b2c;
+  /* background: #21ff00; */
+  color: #747474;
   font-size: 18px;
   cursor: pointer;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   -khtml-border-radius: 5px;
-  border: solid 1px #21ff00;
+  
+  border: solid 1px rgb(180, 180, 180);
   text-transform: capitalize;
 }
 #alphabet li:hover {
-  background: #ff0000;
-  border: solid 1px #ff0000;
-  color: #cfcfcf;
+  background: #fff;
+  border: solid 1px rgb(180, 180, 180);
+  color: #292b2c;
 }
 
 #my-word {
@@ -134,9 +152,9 @@ button {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   -khtml-border-radius: 5px;
-  background: #21ff00;
-  color: #292b2c#292b2c;
-  border: solid 1px #21ff00;
+  /* background: #21ff00; */
+  color:  #747474;
+  border: solid 1px #fff;
   text-decoration: none;
   cursor: pointer;
   font-size: 2em;
@@ -149,9 +167,9 @@ button:hover {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  background: #ff0000;
-  border: solid 1px #ff0000;
-  color: #cfcfcf;
+  /* background: #ff0000; */
+  border: solid 1px #000;
+  color: #292b2c;
 }
 
 @media (max-width: 767px) {
