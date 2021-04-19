@@ -1,18 +1,44 @@
 window.onload = function () {
+  var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",];
 
-  var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-        't', 'u', 'v', 'w', 'x', 'y', 'z'];
-  
-  var categories;         // Array of topics
-  var chosenCategory;     // Selected catagory
-  var getHint ;          // Word getHint
-  var word ;              // Selected word
-  var guess ;             // Geuss
-  var guesses = [ ];      // Stored guesses
-  var lives ;             // Lives
-  var counter ;           // Count correct guesses
-  var space;              // Number of spaces in word '-'
+
+  class category {
+    constructor(word, hint, category) {
+      this.word = word;
+      this.hint = hint;
+      this.category = category;
+    }
+  }
+
+  const categories = [
+    new category("python", "It's perfect for data science", "Programming Languages"),
+    new category("css", "It's like the skin of a webpage", "Programming Languages"),
+    new category("javascript", "The world's most popular programming language", "Programming Languages"),
+    new category("matlab", "If you are a mathematician...", "Programming Languages"),
+    new category("java", "It's a backend programing language", "Programming Languages"),
+    new category("typescript", "It's similar to JavaScript", "Programming Languages"),
+    new category("fortran", "Formula Translation", "Programming Languages"),
+    new category("alien", "Science-Fiction horror film", "Films"),
+    new category("dirty-harry", "1971 American action film", "Films"),
+    new category("gladiator", "Historical drama", "Films"),
+    new category("finding-nemo", "Animated Fish", "Films"),
+    new category("jaws", "Giant great white shark", "Films"),
+    new category("manchester", "Northern city in the UK", "Cities"),
+    new category("milan", "Home of AC and Inter", "Cities"),
+    new category("madrid", "Spanish capital", "Cities"),
+    new category("amsterdam", "Netherlands capital", "Cities"),
+    new category("prague", "Czech Republic capital", "Cities"),
+  ];
+
+  //var categories; // Array of topics
+  var chosenCategory; // Selected catagory
+  var getHint; // Word getHint
+  var word; // Selected word
+  var guess; // Geuss
+  var guesses = []; // Stored guesses
+  var lives; // Lives
+  var counter; // Count correct guesses
+  var space; // Number of spaces in word '-'
 
   // Get elements
   var showLives = document.getElementById("mylives");
@@ -20,45 +46,38 @@ window.onload = function () {
   var getHint = document.getElementById("hint");
   var showClue = document.getElementById("clue");
 
-
-
   // create alphabet ul
   var buttons = function () {
-    myButtons = document.getElementById('buttons');
-    letters = document.createElement('ul');
+    myButtons = document.getElementById("buttons");
+    letters = document.createElement("ul");
 
-    for (var i = 0; i < alphabet.length; i++) {
-      letters.id = 'alphabet';
-      list = document.createElement('li');
-      list.id = 'letter';
-      list.innerHTML = alphabet[i];
+    let letter = alphabet.map(x => {
+      letters.id = "alphabet";
+      list = document.createElement("li");
+      list.id = "letter";
+      list.innerHTML = x;
       check();
       myButtons.appendChild(letters);
       letters.appendChild(list);
-    }
-  }
+      
+    })
     
-  
+  };
+
   // Select Catagory
   var selectCat = function () {
-    if (chosenCategory === categories[0]) {
-      catagoryName.innerHTML = "The Chosen Category Is Programming Languages";
-    } else if (chosenCategory === categories[1]) {
-      catagoryName.innerHTML = "The Chosen Category Is Films";
-    } else if (chosenCategory === categories[2]) {
-      catagoryName.innerHTML = "The Chosen Category Is Cities";
-    }
-  }
+      catagoryName.innerHTML = "The category is " + categories[chosenCategory].category;
+  };
 
   // Create guesses ul
-   result = function () {
-    wordHolder = document.getElementById('hold');
-    correct = document.createElement('ul');
+  result = function () {
+    wordHolder = document.getElementById("hold");
+    correct = document.createElement("ul");
 
     for (var i = 0; i < word.length; i++) {
-      correct.setAttribute('id', 'my-word');
-      guess = document.createElement('li');
-      guess.setAttribute('class', 'guess');
+      correct.setAttribute("id", "my-word");
+      guess = document.createElement("li");
+      guess.setAttribute("class", "guess");
       if (word[i] === "-") {
         guess.innerHTML = "-";
         space = 1;
@@ -70,115 +89,97 @@ window.onload = function () {
       wordHolder.appendChild(correct);
       correct.appendChild(guess);
     }
-  }
-  
+  };
+
   // Show lives
-   comments = function () {
+  comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
-    showLives.style.color = "#faff00";
-        
+    showLives.style.color = "#000000";
+if (lives < 1) {
+        showLives.innerHTML = "Game Over";
+        showLives.style.color = "#ff0000";
+      }
     
-    for (var i = 0; i < guesses.length; i++) {
       
-      if (lives < 1) {
-      showLives.innerHTML = "Game Over";
-      showLives.style.color = "#ff0000";
-        
-    }
       if (counter + space === guesses.length && lives > 0) {
         showLives.innerHTML = "You Win!";
         showLives.style.color = "#00FF37";
-       
       }
-    }
-  }
+    
+  };
 
-      // Animate man
+  // Animate man
   var animate = function () {
-    var drawMe = lives ;
+    var drawMe = lives;
     drawArray[drawMe]();
-  }
+  };
 
-  
-   // Hangman
-  canvas =  function(){
-
+  // Hangman
+  canvas = function () {
     myStickman = document.getElementById("stickman");
-    context = myStickman.getContext('2d');
+    context = myStickman.getContext("2d");
     context.beginPath();
-    context.strokeStyle = gradient;
     context.lineWidth = 2;
     context.font = "30px Verdana";
-// Create gradient
-var gradient = context.createLinearGradient(0, 0, myStickman.width, 0);
-gradient.addColorStop("0", "#21ff00");
-//gradient.addColorStop("0.5", "#3bff00");
-gradient.addColorStop("0.5", "#ff0000");
-// Fill with gradient
-context.strokeStyle = gradient;
-
-
+   
   };
-  
-    head = function(){
-      myStickman = document.getElementById("stickman");
-      context = myStickman.getContext('2d');
-      context.beginPath();
-      context.arc(60, 25, 10, 0, Math.PI*2, true);
-      context.stroke();
-    }
-    
-  draw = function($pathFromx, $pathFromy, $pathTox, $pathToy) {
-    
+
+  head = function () {
+    myStickman = document.getElementById("stickman");
+    context = myStickman.getContext("2d");
+    context.beginPath();
+    context.arc(60, 25, 10, 0, Math.PI * 2, true);
+    context.stroke();
+  };
+
+  draw = function ($pathFromx, $pathFromy, $pathTox, $pathToy) {
     context.moveTo($pathFromx, $pathFromy);
     context.lineTo($pathTox, $pathToy);
-    context.stroke(); 
-}
+    context.stroke();
+  };
 
-   frame1 = function() {
-     draw (0, 150, 150, 150);
-     draw (10, 0, 10, 600); 
-     draw (0, 5, 70, 5);
-     draw (60, 5, 60, 15);
-   };
-   
-  
-   torso = function() {
-     draw (60, 36, 60, 70);
-   };
-  
-   rightArm = function() {
-     draw (60, 40, 70, 50);
-   };
-  
-   leftArm = function() {
-     draw (60, 40, 50, 50);
-   };
-  
-   rightLeg = function() {
-     draw (60, 70, 70, 100);
-   };
-  
-   leftLeg = function() {
-     draw (60, 70, 50, 100);
-   };
-  
-  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame1]; 
+  frame1 = function () {
+    draw(0, 150, 150, 150);
+    draw(10, 0, 10, 600);
+    draw(0, 5, 70, 5);
+    draw(60, 5, 60, 15);
+  };
 
+  torso = function () {
+    draw(60, 36, 60, 70);
+  };
+
+  rightArm = function () {
+    draw(60, 40, 70, 50);
+  };
+
+  leftArm = function () {
+    draw(60, 40, 50, 50);
+  };
+
+  rightLeg = function () {
+    draw(60, 70, 70, 100);
+  };
+
+  leftLeg = function () {
+    draw(60, 70, 50, 100);
+  };
+
+  drawArray = [rightLeg, leftLeg, rightArm, leftArm, torso, head, frame1];
 
   // OnClick Function
-   check = function () {
+  check = function () {
     list.onclick = function () {
-      var geuss = (this.innerHTML);
+      var geuss = this.innerHTML;
       this.setAttribute("class", "active");
       this.onclick = null;
       for (var i = 0; i < word.length; i++) {
         if (word[i] === geuss) {
           guesses[i].innerHTML = geuss;
           counter += 1;
-        } 
+        }
       }
-      var j = (word.indexOf(geuss));
+      var j = word.indexOf(geuss);
       if (j === -1) {
         lives -= 1;
         comments();
@@ -186,25 +187,17 @@ context.strokeStyle = gradient;
       } else {
         comments();
       }
-    }
-  }
-  
-    
+    };
+  };
+
   // Play
   play = function () {
-    categories = [
-        ["python", "css", "javascript", "matlab", "java", "typescript", "fortran"],
-        ["alien", "dirty-harry", "gladiator", "finding-nemo", "jaws"],
-        ["manchester", "milan", "madrid", "amsterdam", "prague"]
-    ];
-
-    chosenCategory = categories[Math.floor(Math.random() * categories.length)];
-    word = chosenCategory[Math.floor(Math.random() * chosenCategory.length)];
+   chosenCategory = Math.floor(Math.random() * categories.length);
+    word = categories[chosenCategory].word;
     word = word.replace(/\s/g, "-");
-    //console.log(word);
     buttons();
 
-    guesses = [ ];
+    guesses = [];
     lives = 7;
     counter = 0;
     space = 0;
@@ -212,32 +205,23 @@ context.strokeStyle = gradient;
     comments();
     selectCat();
     canvas();
-  }
-
-  play();
-  
-  // Hint
-
-    hint.onclick = function() {
-
-      hints = [
-        ["It's perfect for data science", "It's like the skin of a webpage", "The world's most popular programming language", "If you are a mathematician...", "It's a backend programing language", "It's similar to JavaScript", "Formula Translation"],
-        ["Science-Fiction horror film", "1971 American action film", "Historical drama", "Animated Fish", "Giant great white shark"],
-        ["Northern city in the UK", "Home of AC and Inter", "Spanish capital", "Netherlands capital", "Czech Republic capital"]
-    ];
-
-    var catagoryIndex = categories.indexOf(chosenCategory);
-    var hintIndex = chosenCategory.indexOf(word);
-    showClue.innerHTML = "Clue: - " +  hints [catagoryIndex][hintIndex];
   };
 
-   // Reset
+  play();
 
-  document.getElementById('reset').onclick = function() {
+  // Hint
+
+  hint.onclick = function () {
+    showClue.innerHTML = "Clue: - " + categories[chosenCategory].hint;
+  };
+
+  // Reset
+
+  document.getElementById("reset").onclick = function () {
     correct.parentNode.removeChild(correct);
     letters.parentNode.removeChild(letters);
     showClue.innerHTML = "";
     context.clearRect(0, 0, 400, 400);
     play();
-  }
-}
+  };
+};
