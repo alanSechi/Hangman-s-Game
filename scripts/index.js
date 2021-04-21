@@ -104,7 +104,6 @@ if (lives < 1) {
         showLives.innerHTML = "Game Over";
         showLives.style.color = "#ff0000";
         document.getElementById("alphabet").setAttribute("class", "active")
-        document.getElementById("alphabet").onclick() = function(){null};
       }
     
       
