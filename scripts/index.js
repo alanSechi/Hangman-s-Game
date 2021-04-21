@@ -39,6 +39,7 @@ window.onload = function () {
   var lives; // Lives
   var counter; // Count correct guesses
   var space; // Number of spaces in word '-'
+  var win = false;
 
   // Get elements
   var showLives = document.getElementById("mylives");
@@ -91,6 +92,10 @@ window.onload = function () {
     }
   };
 
+
+
+
+
   // Show lives
   comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
@@ -98,14 +103,18 @@ window.onload = function () {
 if (lives < 1) {
         showLives.innerHTML = "Game Over";
         showLives.style.color = "#ff0000";
+        document.getElementById("alphabet").setAttribute("class", "active")
+        document.getElementById("alphabet").onclick() = null;
       }
     
       
       if (counter + space === guesses.length && lives > 0) {
         showLives.innerHTML = "You Win!";
         showLives.style.color = "#00FF37";
+        document.getElementById("alphabet").setAttribute("class", "active")
+        document.getElementById("alphabet").onclick() = null;
       }
-    
+
   };
 
   // Animate man
@@ -176,12 +185,13 @@ if (lives < 1) {
       for (var i = 0; i < word.length; i++) {
         if (word[i] === geuss) {
           guesses[i].innerHTML = geuss;
-          counter += 1;
+            counter += 1;
         }
       }
       var j = word.indexOf(geuss);
       if (j === -1) {
         lives -= 1;
+      
         comments();
         animate();
       } else {
