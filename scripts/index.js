@@ -65,7 +65,7 @@ window.onload = function () {
     
   };
 
-  // Select Catagory
+  // Select Category
   var selectCat = function () {
       catagoryName.innerHTML = "The category is " + categories[chosenCategory].category;
   };
@@ -104,7 +104,7 @@ if (lives < 1) {
         showLives.innerHTML = "Game Over";
         showLives.style.color = "#ff0000";
         document.getElementById("alphabet").setAttribute("class", "active")
-        document.getElementById("alphabet").onclick() = null;
+        document.getElementById("alphabet").onclick() = function(){null};
       }
     
       
@@ -112,7 +112,7 @@ if (lives < 1) {
         showLives.innerHTML = "You Win!";
         showLives.style.color = "#00FF37";
         document.getElementById("alphabet").setAttribute("class", "active")
-        document.getElementById("alphabet").onclick() = null;
+        document.getElementById("alphabet").onclick() = function(){null};
       }
 
   };
