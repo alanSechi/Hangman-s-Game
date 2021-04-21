@@ -110,7 +110,7 @@ if (lives < 1) {
       
       if (counter + space === guesses.length && lives > 0) {
         showLives.innerHTML = "You Win!";
-        showLives.style.color = "#00FF37";
+        showLives.style.color = "#039921";
         document.getElementById("alphabet").setAttribute("class", "active")
         document.getElementById("alphabet").onclick() = function(){null};
       }
