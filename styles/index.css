@@ -146,7 +146,7 @@ button {
   -webkit-border-radius: 0.313rem;
   border-radius: 0.313rem;
   -khtml-border-radius: 0.313rem;
-  /* background: #21ff00; */
+  background-color: white;
   color:  #747474;
   border: solid 0.063rem #fff;
   text-decoration: none;
@@ -191,6 +191,7 @@ button:hover {
     padding: 0.563rem 0.313rem;
     width: 5rem;
     margin: 0.313rem;
+    background-color: white;
   }
   #mylives{
     font-size: 0.8rem;
